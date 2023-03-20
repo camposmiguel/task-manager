@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Task Manager</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{% url 'home' %}">
+                <h1 class="title is-2">Task Manager</h1>
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu is-flex">
+
+            <a class="navbar-item" style="margin-left: 300px;">
+                <button class="button is-primary is-light" onclick="openModal()">Add new task</button>
+            </a>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="control is-flex is-flex-direction-column">
+                        <div class="tabs is-right is-boxed">
+                            <ul>
+                                <li id="tabincomplete">
+                                    <a href="{% url 'home' %}">
+                                        <span class="icon is-small"><ion-icon name="close-outline"></ion-icon>
+                                        </span>
+                                        <span>Incomplete Tasks</span>
+                                    </a>
+                                </li>
+                                <li id="tabdone"><a href="{% url 'completed' %}" onclick="changeActive()"><span
+                                            class="icon is-small"><ion-icon name="checkmark-outline"></ion-icon>
+                                        </span>
+                                        <span>Complete Tasks</span>
+                                    </a></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Table -->
+    <div class="container">
+
+        <table class="table is-fullwidth is-striped">
+            <thead>
+                <tr>
+                    <th title="Name">Name</th>
+                    <th title="Status">Status</th>
+                    <th title="Edit-Done"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% block content %}
+                {% endblock %}
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <!-- Modal -->
+    <form method="post">
+        {% csrf_token %}
+        <div class="modal" id='modal'>
+            <div class="modal-background" id='modalBG'></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Give the task a name</p>
+                    <button class="delete" aria-label="close" onclick="closeModal()"></button>
+                </header>
+                <section class="modal-card-body">
+                    <input class="input" type="text" placeholder="Name task" name='name'>
+                    <p class="subtitle is-7" style="padding-top: 15px;">Note: The task will be saved as <strong>
+                            INCOMPLETE </strong>at first</p>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success" name='taskname'>Save changes</button>
+                    <button class="button" name='cancel' onclick="closeModal()">Cancel</button>
+                </footer>
+            </div>
+        </div>
+    </form>
+
+    <!-- Scripts -->
+    <script>
+        function openModal() {
+            modal.classList.add('is-active')
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('is-active');
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

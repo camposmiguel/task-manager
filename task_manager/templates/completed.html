@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if done_tasks %}
+{% for things in done_tasks %}
+<tr style="background-color: #a9fcba">
+    <td>{{things.name}}</td>
+    <td style="color: green">Complete</td>
+    <td>
+        <a href="{% url 'statusfalse' things.id %}" class="button is-warning">Undo</a>
+        <!-- <button class="button is-warning">Undo</button> -->
+    </td>
+</tr>
+{% endfor %}
+{% endif %}
+{% endblock %}

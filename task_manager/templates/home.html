@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if all_tasks %}
+{% for things in all_tasks %}
+<tr>
+    <td>{{things.name}}</td>
+    <td style="color: red;">Incomplete</td>
+    <td><a class="button is-warning" href="{% url 'edit' things.id%}">Edit Task</a>
+        <a href="{%url 'delete' things.id %}" class='button is-danger is-link'>Delete Task</a>
+        <a href="{% url 'statustrue' things.id %}" class="button is-success">Done</a>
+    </td>
+</tr>
+
+
+{% endfor %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Task Manager</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{% url 'home' %}">
+                <h1 class="title is-2">Task Manager</h1>
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+    </nav>
+
+    <h1 class=" subtitle is-5" style="padding-left: 15px; color: blue;"> Editing task </h1>
+
+
+    <form method="post">
+        {% csrf_token %}
+        <input class="input" type="text" name='name' value="{{data.name}}" placeholder="Text input"
+            style="width: 500px; margin-left: 15px;">
+        <button class="button is-success" type="submit">Save changes</button>
+    </form>
+
+</body>
