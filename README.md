@@ -2,7 +2,7 @@
 
 ## DESCRIÇÃO
 
-    Task Manager é um aplicativo de gerenciamento de tarefas que podem ser marcadas como concluídas, podem ser deletadas ou até mesmo editadas utilizando Django, Python, PostgreSQL e o framework css Bulma.
+ Task Manager é um aplicativo de gerenciamento de tarefas que podem ser marcadas como concluídas, podem ser deletadas ou até mesmo editadas utilizando Django, Python, PostgreSQL e o framework css Bulma.
 
 ## VERSÕES
 
